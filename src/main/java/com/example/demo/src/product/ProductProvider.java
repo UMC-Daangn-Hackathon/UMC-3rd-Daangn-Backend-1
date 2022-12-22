@@ -46,24 +46,24 @@ public class ProductProvider {
         }
     }
 
-//    public List<GetProductRes> getProductsByKeyword(String productAddress, String keyword) throws BaseException {
-//        try {
-//            List<GetProductRes> getProductRes = productDao.getProductsByKeyword(productAddress, keyword);
-//            return getProductRes;
-//
-//        } catch (Exception exception) {
-//            throw new BaseException(DATABASE_ERROR);
-//        }
-//    }
-//
-//    public List<GetProductRes> getProductsByKeywordAndCategory(String productAddress, String keyword, String category) throws BaseException {
-//        try {
-//            List<GetProductRes> getProductRes = productDao.getProductsByKeywordAndCategory(productAddress, keyword, category);
-//            return getProductRes;
-//
-//        } catch (Exception exception) {
-//            throw new BaseException(DATABASE_ERROR);
-//        }
-//    }
+    public List<GetProductRes> getProductsByKeyword(String productAddress, String keyword) throws BaseException {
+        try {
+            List<GetProductRes> getProductRes = productDao.getProductsByKeyword(productAddress, keyword);
+            return getProductRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public List<GetProductRes> getProductsByKeywordAndCategory(String productAddress, String keyword, String category) throws BaseException {
+        try {
+            List<GetProductRes> getProductRes = productDao.getProductsByKeywordAndCategory(productAddress, keyword, category);
+            return getProductRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }
 
