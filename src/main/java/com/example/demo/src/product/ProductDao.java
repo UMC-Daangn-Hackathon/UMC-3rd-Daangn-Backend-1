@@ -21,7 +21,8 @@ public class ProductDao {
     }
 
     public List<GetProductRes> getProducts(String productAddress){
-        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved')";
+        String getProductsQuery =
+        "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in (select imageIdx from ProductImage where productIdx in (select productIdx from Product where productAddress = ? and (status = 'Active' or status = 'Reserved')) GROUP BY productIdx) group by Product.productIdx";
         return this.jdbcTemplate.query(getProductsQuery,
                 (rs,rowNum) -> new GetProductRes(
                         rs.getString("productName"),
@@ -46,7 +47,9 @@ public class ProductDao {
     }
 
     public List<GetProductRes> getProductsByCategory(String productAddress, String category) {
-        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?)";
+        String getProductsQuery =
+                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in (select imageIdx from ProductImage where productIdx in (select productIdx from Product where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?)) GROUP BY productIdx) group by Product.productIdx";
+//        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?)";
         return this.jdbcTemplate.query(getProductsQuery,
                 (rs,rowNum) -> new GetProductRes(
                         rs.getString("productName"),
@@ -60,7 +63,9 @@ public class ProductDao {
     }
 
     public List<GetProductRes> getProductsByKeyword(String productAddress, String keyword) {
-        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and productName like ?";
+        String getProductsQuery =
+                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in (select imageIdx from ProductImage where productIdx in (select productIdx from Product where productAddress = ? and (status = 'Active' or status = 'Reserved') and productName like ?) GROUP BY productIdx) group by Product.productIdx";
+//        String getProductsQuery = "select * from Product inner outer join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and productName like ?";
         String searchWord = '%' + keyword + '%';
         return this.jdbcTemplate.query(getProductsQuery,
                 (rs,rowNum) -> new GetProductRes(
@@ -75,7 +80,9 @@ public class ProductDao {
     }
 //
     public List<GetProductRes> getProductsByKeywordAndCategory(String productAddress, String keyword, String category) {
-        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?) and productName like ?";
+        String getProductsQuery =
+                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in (select imageIdx from ProductImage where productIdx in (select productIdx from Product where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?) and productName like ?) GROUP BY productIdx) group by Product.productIdx";
+//        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?) and productName like ?";
         String searchWord = '%' + keyword + '%';
         return this.jdbcTemplate.query(getProductsQuery,
                 (rs,rowNum) -> new GetProductRes(
