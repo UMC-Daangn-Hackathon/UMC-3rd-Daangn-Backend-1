@@ -11,4 +11,6 @@ public class PostLoginRes {
 
     private int userIdx;
     private String jwt;
+    private String address;
+    private String addressDetail;
 }
