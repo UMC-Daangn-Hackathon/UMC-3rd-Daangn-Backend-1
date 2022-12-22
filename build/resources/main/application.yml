@@ -7,7 +7,7 @@ spring:
 
   datasource:
     platform: mysql
-    url: jdbc:mysql://localhost/daangn?autoReconnect=true&serverTimezone=UTC # 변경해주세요
+    url: jdbc:mysql://umc-server-rds-test.c1obql0qiytf.ap-northeast-2.rds.amazonaws.com/daangn?autoReconnect=true&serverTimezone=UTC # 변경해주세요
     username: root
     password: dnrdl4630
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
