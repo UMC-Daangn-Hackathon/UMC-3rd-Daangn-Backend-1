@@ -8,12 +8,6 @@
 ### 🚀 개발 인원 및 기간
 * 개발 기간 : 2022/12/22 ~ 2022/12/23 (무박2일)
 * 프론트엔드 2명, 백엔드 2명
-    * Back-end   
-        * 김기현 - Modeling, 
-        * 민병욱 - Modeling, 
-    * Front-end  
-        * 노규리 - 
-        * 신정연 - 
      * <a href="https://github.com/UMC-Daangn-Hackathon/UMC-3rd-Daangn-Backend-1">백엔드_Android github 링크</a>
 <br><br>
 
