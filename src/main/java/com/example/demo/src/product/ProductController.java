@@ -43,14 +43,38 @@ public class ProductController {
      * 상품 조회 API
      * [GET] /products/:productAddress
      * @return BaseResponse<List<GetProductRes>>
+     * 검색어로 상품 조회 API
+     * [GET] /products/:productAddress? keyword=
+     *
+     * 카테고리로 상품 조회 API
+     * [GET] /products/:productAddress? category=
+     *
+     * 검색어, 카테고리로 상품 조회 API
+     * [GET] /products/:productAddress? keyword= & category=
      */
     @ResponseBody
-    @GetMapping("/{productAddress}") // (GET) 127.0.0.1:9000/app/products
-    public BaseResponse<List<GetProductRes>> getProducts(@PathVariable("productAddress") String productAddress) {
+    @GetMapping("/{productAddress}") // (GET) 127.0.0.1:9000/app/products/:productAddress
+    public BaseResponse<List<GetProductRes>> getProducts(@PathVariable("productAddress") String productAddress, @RequestParam(required = false) String keyword, @RequestParam(required = false) String category) {
         try{
-            // Get Products
-            List<GetProductRes> getProductsRes = productProvider.getProducts(productAddress);
+            if (keyword == null && category == null) {
+                // Get Products
+                List<GetProductRes> getProductsRes = productProvider.getProducts(productAddress);
+                return new BaseResponse<>(getProductsRes);
+            }
+            List<GetProductRes> getProductsRes = productProvider.getProductsByCategory(productAddress, category);
             return new BaseResponse<>(getProductsRes);
+//            else if (keyword == null) {
+//                List<GetProductRes> getProductsRes = productProvider.getProductsByCategory(productAddress, category);
+//                return new BaseResponse<>(getProductsRes);
+//            }
+//            else if (category == null) {
+//                List<GetProductRes> getProductsRes = productProvider.getProductsByKeyword(productAddress, keyword);
+//                return new BaseResponse<>(getProductsRes);
+//            } else {
+//                List<GetProductRes> getProductsRes = productProvider.getProductsByKeywordAndCategory(productAddress, keyword, category);
+//                return new BaseResponse<>(getProductsRes);
+//            }
+
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }
@@ -66,5 +90,12 @@ public class ProductController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+    /**
+     * 상품 1개 조회 API
+     * [GET] /products/:productIdx
+     * @return BaseResponse<GetProductRes>
+     */
+
 }
 
