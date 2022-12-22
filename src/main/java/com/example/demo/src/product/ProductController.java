@@ -1,28 +1,19 @@
 package com.example.demo.src.product;
 
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
 import com.example.demo.src.product.model.GetProductRes;
 import com.example.demo.src.product.model.PostProductReq;
 import com.example.demo.src.product.model.PostProductRes;
-import com.example.demo.src.user.UserProvider;
-import com.example.demo.src.user.UserService;
-import com.example.demo.src.user.model.*;
 import com.example.demo.utils.JwtService;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
-import java.util.List;
 
-import static com.example.demo.config.BaseResponseStatus.*;
-import static com.example.demo.config.BaseResponseStatus.INVALID_USER_JWT;
-import static com.example.demo.utils.ValidationRegex.isRegexEmail;
+import java.util.List;
 
 @RestController
 @RequestMapping("/app/products")
@@ -89,24 +80,13 @@ public class ProductController {
     public BaseResponse<PostProductRes> createPost(@RequestBody PostProductReq postProductReq)  {
         try{
             PostProductRes postProductRes = productService.createPost(postProductReq);
-
             return new BaseResponse<>(postProductRes);
         }catch(BaseException exception){
             return new BaseResponse<>(exception.getStatus());
         }
     }
 
-    private final AwsS3Service awsS3Service;
 
-    @PostMapping("/resource")
-    public AwsS3 upload(@RequestPart("file") MultipartFile multipartFile) throws IOException {
-        return awsS3Service.upload(multipartFile,"upload");
-    }
-
-    @DeleteMapping("/resource")
-    public void remove(AwsS3 awsS3) {
-        awsS3Service.remove(awsS3);
-    }
 
     /**
      * 상품 1개 조회 API
