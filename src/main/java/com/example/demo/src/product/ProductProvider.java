@@ -1,6 +1,7 @@
 package com.example.demo.src.product;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.src.product.model.GetProductDetailRes;
 import com.example.demo.src.product.model.GetProductRes;
 import com.example.demo.src.user.UserDao;
 import com.example.demo.utils.JwtService;
@@ -60,6 +61,16 @@ public class ProductProvider {
         try {
             List<GetProductRes> getProductRes = productDao.getProductsByKeywordAndCategory(productAddress, keyword, category);
             return getProductRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public GetProductDetailRes getProduct(String productIdx) throws BaseException {
+        try {
+          GetProductDetailRes getProductDetailRes = productDao.getProductsByIdx(productIdx);
+            return getProductDetailRes;
 
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);

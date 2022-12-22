@@ -42,14 +42,16 @@ com/example/demo/src/user/model/User.java
  com.example.demo.src.user.model.User
 com/example/demo/src/user/UserService.java
  com.example.demo.src.user.UserService
-com/example/demo/src/product/model/GetProductRes.java
- com.example.demo.src.product.model.GetProductRes
+com/example/demo/config/BaseException.java
+ com.example.demo.config.BaseException
 com/example/demo/src/product/model/PostProductRes.java
  com.example.demo.src.product.model.PostProductRes
 com/example/demo/src/user/model/GetUserRes.java
  com.example.demo.src.user.model.GetUserRes
-com/example/demo/config/BaseException.java
- com.example.demo.config.BaseException
+com/example/demo/src/product/model/GetProductRes.java
+ com.example.demo.src.product.model.GetProductRes
+com/example/demo/src/product/model/GetProductDetailRes.java
+ com.example.demo.src.product.model.GetProductDetailRes
 com/example/demo/src/product/ProductProvider.java
  com.example.demo.src.product.ProductProvider
 com/example/demo/src/product/ProductDao.java
