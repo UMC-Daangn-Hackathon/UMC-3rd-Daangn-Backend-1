@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+build
+.gradle
+
 .DS_Store
 .idea
 /src/main/resources/application.yml
