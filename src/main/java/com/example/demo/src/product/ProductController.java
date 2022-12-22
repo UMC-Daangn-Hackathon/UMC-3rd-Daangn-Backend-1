@@ -60,20 +60,18 @@ public class ProductController {
                 // Get Products
                 List<GetProductRes> getProductsRes = productProvider.getProducts(productAddress);
                 return new BaseResponse<>(getProductsRes);
+            } else if (keyword == null) {
+                List<GetProductRes> getProductsRes = productProvider.getProductsByCategory(productAddress, category);
+                return new BaseResponse<>(getProductsRes);
             }
-            List<GetProductRes> getProductsRes = productProvider.getProductsByCategory(productAddress, category);
-            return new BaseResponse<>(getProductsRes);
-//            else if (keyword == null) {
-//                List<GetProductRes> getProductsRes = productProvider.getProductsByCategory(productAddress, category);
-//                return new BaseResponse<>(getProductsRes);
-//            }
-//            else if (category == null) {
-//                List<GetProductRes> getProductsRes = productProvider.getProductsByKeyword(productAddress, keyword);
-//                return new BaseResponse<>(getProductsRes);
-//            } else {
-//                List<GetProductRes> getProductsRes = productProvider.getProductsByKeywordAndCategory(productAddress, keyword, category);
-//                return new BaseResponse<>(getProductsRes);
-//            }
+            else if (category == null) {
+                List<GetProductRes> getProductsRes = productProvider.getProductsByKeyword(productAddress, keyword);
+                return new BaseResponse<>(getProductsRes);
+            }
+            else {
+                List<GetProductRes> getProductsRes = productProvider.getProductsByKeywordAndCategory(productAddress, keyword, category);
+                return new BaseResponse<>(getProductsRes);
+            }
 
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
