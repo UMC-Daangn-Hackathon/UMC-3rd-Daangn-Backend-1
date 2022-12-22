@@ -18,5 +18,5 @@ public class PostProductReq {
     private String productAddress;
     private String description;
     private int price;
-//    private List<String> images;
+    private List<String> images;
 }
