@@ -35,6 +35,9 @@ public enum BaseResponseStatus {
     POST_USERS_EMPTY_PASSWORD(false, 2018, "비밀번호를 입력해주세요." ),
     POST_USERS_EMPTY_ADDRESS(false, 2019, "주소를 입력해주세요."),
 
+    //
+    POST_PRODUCT_EXISTS_NAME(false, 2020, "상품 이름을 입력해주세요."),
+
     /**
      * 3000 : Response 오류
      */
