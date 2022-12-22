@@ -92,6 +92,11 @@ public class UserController {
         if(postUserReq.getEmail() == null){
             return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
         }
+
+        if(postUserReq.getEmail() == null){
+            return new BaseResponse<>(POST_USERS_EMPTY_ID);
+        }
+
         //이메일 정규표현
         if(!isRegexEmail(postUserReq.getEmail())){
             return new BaseResponse<>(POST_USERS_INVALID_EMAIL);

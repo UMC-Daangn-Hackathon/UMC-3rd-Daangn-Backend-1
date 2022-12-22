@@ -76,6 +76,15 @@ public class UserDao {
 
     }
 
+    public int checkID(String ID){
+        String checkIDQuery = "select exists(select ID from User where ID = ?)";
+        String checkIDParams = ID;
+        return this.jdbcTemplate.queryForObject(checkIDQuery,
+                int.class,
+                checkIDParams);
+
+    }
+
     public int modifyUserName(PatchUserReq patchUserReq){
         String modifyUserNameQuery = "update User set userName = ? where userIdx = ? ";
         Object[] modifyUserNameParams = new Object[]{patchUserReq.getUserName(), patchUserReq.getUserIdx()};
