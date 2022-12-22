@@ -1,13 +1,16 @@
 package com.example.demo.src.product;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.src.product.model.GetProductDetailRes;
 import com.example.demo.src.product.model.GetProductRes;
 import com.example.demo.src.user.UserDao;
+import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,6 +64,15 @@ public class ProductProvider {
             List<GetProductRes> getProductRes = productDao.getProductsByKeywordAndCategory(productAddress, keyword, category);
             return getProductRes;
 
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public List<GetProductDetailRes> getProduct(int productIdx) throws BaseException {
+        try {
+            List<GetProductDetailRes> getProductDetailRes = productDao.getProduct(productIdx);
+            return getProductDetailRes;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }

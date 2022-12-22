@@ -4,15 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
-public class GetProductRes {
-    private int productIdx;
+public class GetProductDetailRes {
+    private String userName;
     private String productName;
     private String productAddress;
+    private String description;
     private int price;
     private String createdAt;
     private String updatedAt;
-    private String productImage;
+    private String status;
+    private List<String> images;
 }
+
