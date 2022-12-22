@@ -32,7 +32,8 @@ public enum BaseResponseStatus {
 
     POST_USERS_EMPTY_ID(false, 2015, "아이디를 입력해주세요."),
     POST_USERS_EXISTS_ID(false,2017,"중복된 아이디입니다."),
-
+    POST_USERS_EMPTY_PASSWORD(false, 2018, "비밀번호를 입력해주세요." ),
+    POST_USERS_EMPTY_ADDRESS(false, 2019, "주소를 입력해주세요."),
 
     /**
      * 3000 : Response 오류
@@ -56,8 +57,7 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_USERNAME(false,4014,"유저네임 수정 실패"),
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
-    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다."),
-    POST_USERS_EMPTY_PASSWORD(false, 4013, "비밀번호를 입력해주세요." );
+    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");
 
 
     // 5000 : 필요시 만들어서 쓰세요
