@@ -12,3 +12,19 @@ spring:
     password: dnrdl4630
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
     # driver-class-name: com.mysql.jdbc.Driver # mysql 5버전
+  servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 10MB
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAZIXBM3RLUIYCWYPI     # AWS IAM AccessKey 적기
+      secretKey: 0L7lV/HPw32lVJSv84RGLMVr6KQYBcaSH5RjcchM  # AWS IAM SecretKey 적기
+    s3:
+      bucket: dangng    # ex) marryting-gyunny
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
