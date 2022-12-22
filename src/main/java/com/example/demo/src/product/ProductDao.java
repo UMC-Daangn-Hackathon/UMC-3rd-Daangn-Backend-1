@@ -35,10 +35,10 @@ public class ProductDao {
     }
 
     public int createPost(PostProductReq postProductReq){
-        String createPostQuery = "insert into Product (productName, userIdx, categoryIdx, productAddress, description, price) VALUES (?,?,?,?,?,?)";
+        String createPostQuery = "insert into Product (productName, userIdx, categoryIdx, productAddress, description, price, images) VALUES (?,?,?,?,?,?,?)";
         Object[] createPostParams = new Object[]{ postProductReq.getProductName(),
                 postProductReq.getUserIdx(), postProductReq.getCategoryIdx(), postProductReq.getProductAddress(),
-                postProductReq.getDescription(), postProductReq.getPrice()};
+                postProductReq.getDescription(), postProductReq.getPrice(), postProductReq.getImages()};
         this.jdbcTemplate.update(createPostQuery, createPostParams);
 
         String lastInsertIdQuery = "select last_insert_id()";
