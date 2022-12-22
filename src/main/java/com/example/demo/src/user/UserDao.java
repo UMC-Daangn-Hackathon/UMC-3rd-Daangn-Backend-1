@@ -27,7 +27,9 @@ public class UserDao {
                         rs.getString("userName"),
                         rs.getString("ID"),
                         rs.getString("Email"),
-                        rs.getString("password"))
+                        rs.getString("password"),
+                        rs.getString("address"),
+                        rs.getString("addressDetail"))
                 );
     }
 
@@ -40,7 +42,10 @@ public class UserDao {
                         rs.getString("userName"),
                         rs.getString("ID"),
                         rs.getString("Email"),
-                        rs.getString("password")),
+                        rs.getString("password"),
+                        rs.getString("address"),
+                        rs.getString("addressDetail"))
+                ,
                 getUsersByEmailParams);
     }
 
@@ -53,14 +58,16 @@ public class UserDao {
                         rs.getString("userName"),
                         rs.getString("ID"),
                         rs.getString("Email"),
-                        rs.getString("password")),
+                        rs.getString("password"),
+                        rs.getString("address"),
+                        rs.getString("addressDetail")),
                 getUserParams);
     }
     
 
     public int createUser(PostUserReq postUserReq){
-        String createUserQuery = "insert into User (userName, ID, password, email) VALUES (?,?,?,?)";
-        Object[] createUserParams = new Object[]{postUserReq.getUserName(), postUserReq.getID(), postUserReq.getPassword(), postUserReq.getEmail()};
+        String createUserQuery = "insert into User (userName, ID, password, email, address, addressDetail) VALUES (?,?,?,?,?,?)";
+        Object[] createUserParams = new Object[]{postUserReq.getUserName(), postUserReq.getID(), postUserReq.getPassword(), postUserReq.getEmail(), postUserReq.getAddress(), postUserReq.getAddressDetail()};
         this.jdbcTemplate.update(createUserQuery, createUserParams);
 
         String lastInserIdQuery = "select last_insert_id()";
