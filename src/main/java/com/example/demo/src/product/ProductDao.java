@@ -45,5 +45,24 @@ public class ProductDao {
         return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
     }
 
+    public List<GetProductRes> getProductsByCategory(String productAddress, String category) {
+        String getProductsQuery = "select * from Product inner join ProductImage where productAddress = ? and (status = 'Active' or status = 'Reserved') and categoryIdx = (select Category.categoryIdx from Category where categoryName = ?)";
+        return this.jdbcTemplate.query(getProductsQuery,
+                (rs,rowNum) -> new GetProductRes(
+                        rs.getString("productName"),
+                        rs.getString("productAddress"),
+                        rs.getInt("price"),
+                        rs.getString("createdAt"),
+                        rs.getString("updatedAt"),
+                        rs.getString("image"))
+                ,
+                productAddress, category);
+    }
 
+//    public List<GetProductRes> getProductsByKeyword(String productAddress, String keyword) {
+//
+//    }
+//
+//    public List<GetProductRes> getProductsByKeywordAndCategory(String productAddress, String keyword, String category) {
+//    }
 }
