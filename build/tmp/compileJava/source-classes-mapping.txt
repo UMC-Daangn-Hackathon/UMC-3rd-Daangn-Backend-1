@@ -64,11 +64,15 @@ com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
 com/example/demo/src/product/model/GetProductDetailRes.java
  com.example.demo.src.product.model.GetProductDetailRes
-com/example/demo/src/product/ProductService.java
- com.example.demo.src.product.ProductService
-com/example/demo/src/product/ProductDao.java
- com.example.demo.src.product.ProductDao
+com/example/demo/src/product/model/GetSoldOutProductRes.java
+ com.example.demo.src.product.model.GetSoldOutProductRes
+com/example/demo/src/product/model/GetSaleProductRes.java
+ com.example.demo.src.product.model.GetSaleProductRes
 com/example/demo/src/product/ProductProvider.java
  com.example.demo.src.product.ProductProvider
+com/example/demo/src/product/ProductDao.java
+ com.example.demo.src.product.ProductDao
+com/example/demo/src/product/ProductService.java
+ com.example.demo.src.product.ProductService
 com/example/demo/src/product/ProductController.java
  com.example.demo.src.product.ProductController
