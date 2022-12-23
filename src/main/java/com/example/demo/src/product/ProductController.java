@@ -2,9 +2,11 @@ package com.example.demo.src.product;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.product.model.GetProductDetailRes;
 import com.example.demo.src.product.model.GetProductRes;
 import com.example.demo.src.product.model.PostProductReq;
 import com.example.demo.src.product.model.PostProductRes;
+import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,10 +89,19 @@ public class ProductController {
 
 
     /**
-     * 상품 1개 조회 API
+     * 상품 상세 조회 조회 API
      * [GET] /products/:productIdx
      * @return BaseResponse<GetProductRes>
      */
-
+    @ResponseBody
+    @GetMapping("/detail")
+    public BaseResponse<List<GetProductDetailRes>> getProductDetail(@RequestParam(required = true) int productIdx) {
+        try {
+            List<GetProductDetailRes> getProductDetailRes = productProvider.getProduct(productIdx);
+            return new BaseResponse<>(getProductDetailRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 }
 
