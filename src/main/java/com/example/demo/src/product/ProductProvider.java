@@ -3,6 +3,8 @@ package com.example.demo.src.product;
 import com.example.demo.config.BaseException;
 import com.example.demo.src.product.model.GetProductDetailRes;
 import com.example.demo.src.product.model.GetProductRes;
+import com.example.demo.src.product.model.GetSaleProductRes;
+import com.example.demo.src.product.model.GetSoldOutProductRes;
 import com.example.demo.src.user.UserDao;
 import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
@@ -77,5 +79,25 @@ public class ProductProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+    public List<GetSaleProductRes> getSaleProduct(int userIdx) throws BaseException {
+        try {
+            List<GetSaleProductRes> getSaleProductRes = productDao.getSaleProducts(userIdx);
+            return getSaleProductRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public List<GetSoldOutProductRes> getSoldOutProduct(int userIdx) throws BaseException {
+        try {
+            List<GetSoldOutProductRes> getSoldOutProductRes = productDao.getSoldOutProducts(userIdx);
+            return getSoldOutProductRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 }
 
