@@ -1,5 +1,5 @@
 # 당근마켓 해커톤
-<img width="234" src="https://pbs.twimg.com/media/EbiM7ZFUYAYqax8.jpg">
+<img width="234" alt="스크린샷 2022-12-26 오후 2 39 06" src="https://user-images.githubusercontent.com/60570733/209508203-d5d83946-74b7-4e04-99f6-c60117969f66.png">
 당근마켓을 주제로 한 클론구현</br>
 
 <br><br>
@@ -8,7 +8,6 @@
 ### 🚀 개발 인원 및 기간
 * 개발 기간 : 2022/12/22 ~ 2022/12/23 (무박2일)
 * 프론트엔드 2명, 백엔드 2명
-     * <a href="https://github.com/UMC-Daangn-Hackathon/UMC-3rd-Daangn-Backend-1">백엔드_Android github 링크</a>
 
 <br><br>
 
