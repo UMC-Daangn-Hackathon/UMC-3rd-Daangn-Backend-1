@@ -1,8 +1,6 @@
 package com.example.demo.src.product;
 
-import com.example.demo.src.product.model.GetProductDetailRes;
-import com.example.demo.src.product.model.GetProductRes;
-import com.example.demo.src.product.model.PostProductReq;
+import com.example.demo.src.product.model.*;
 import com.example.demo.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -120,13 +118,40 @@ public class ProductDao {
                         ,
                 productIdx);
     }
-    /*
-    private String productName;
-    private String productAddress;
-    private String description;
-    private int price;
-    private String createdAt;
-    private String updatedAt;
-    private String status;
-     */
+
+    public List<GetSaleProductRes> getSaleProducts(int userIdx) {
+//        String getProductsQuery = "select * from Product where userIdx = ?";
+        String getProductsQuery =
+                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in ( select imageIdx from ProductImage where productIdx in (select productIdx from Product where userIdx = ? and (status = 'Active' or status = 'Reserved'))) group by Product.productIdx;";
+        return this.jdbcTemplate.query(getProductsQuery,
+                (rs,rowNum) -> new GetSaleProductRes(
+                        rs.getInt("productIdx"),
+                        rs.getString("productName"),
+                        rs.getString("productAddress"),
+                        rs.getInt("price"),
+                        rs.getString("createdAt"),
+                        rs.getString("updatedAt"),
+                        rs.getString("image")
+            )
+                ,
+                userIdx);
+    }
+
+    public List<GetSoldOutProductRes> getSoldOutProducts(int userIdx) {
+//        String getProductsQuery =
+//                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in (select imageIdx from ProductImage where productIdx in (select productIdx from Product where userIdx = ? and (status = 'SoldOut'))) group by Product.productIdx";
+        String getProductsQuery =
+                "select * from Product inner join ProductImage on Product.productIdx = ProductImage.productIdx where imageIdx in ( select imageIdx from ProductImage where productIdx in (select productIdx from Product where userIdx = ? and (status = 'SoldOut'))) group by Product.productIdx";
+        return this.jdbcTemplate.query(getProductsQuery,
+                (rs,rowNum) -> new GetSoldOutProductRes(
+                        rs.getInt("Product.productIdx"),
+                        rs.getString("productName"),
+                        rs.getString("productAddress"),
+                        rs.getInt("price"),
+                        rs.getString("createdAt"),
+                        rs.getString("updatedAt"),
+                        rs.getString("image"))
+                ,
+                userIdx);
+    }
 }

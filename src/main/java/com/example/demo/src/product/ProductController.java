@@ -2,10 +2,7 @@ package com.example.demo.src.product;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
-import com.example.demo.src.product.model.GetProductDetailRes;
-import com.example.demo.src.product.model.GetProductRes;
-import com.example.demo.src.product.model.PostProductReq;
-import com.example.demo.src.product.model.PostProductRes;
+import com.example.demo.src.product.model.*;
 import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
@@ -99,6 +96,38 @@ public class ProductController {
         try {
             List<GetProductDetailRes> getProductDetailRes = productProvider.getProduct(productIdx);
             return new BaseResponse<>(getProductDetailRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 마이페이지 판매중 상품 조회 API
+     * [GET] /products/sale/
+     * @return BaseResponse<GetSaleProductRes>
+     */
+    @ResponseBody
+    @GetMapping("/sale")
+    public BaseResponse<List<GetSaleProductRes>> getSaleProduct(@RequestParam(required = true) int userIdx) {
+        try {
+            List<GetSaleProductRes> getSaleProductRes = productProvider.getSaleProduct(userIdx);
+            return new BaseResponse<>(getSaleProductRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 마이페이지 판매 완료 상품 조회 API
+     * [GET] /products/soldout/
+     * @return BaseResponse<GetSoldOutProductRes>
+     */
+    @ResponseBody
+    @GetMapping("/soldout")
+    public BaseResponse<List<GetSoldOutProductRes>> getSoldOutProduct(@RequestParam(required = true) int userIdx) {
+        try {
+            List<GetSoldOutProductRes> getSoldOutProductRes = productProvider.getSoldOutProduct(userIdx);
+            return new BaseResponse<>(getSoldOutProductRes);
         } catch(BaseException exception) {
             return new BaseResponse<>((exception.getStatus()));
         }
